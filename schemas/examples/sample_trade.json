@@ -1,0 +1,43 @@
+{
+  "_comment": "Synthetic example record for schema validation and testing. Not real trade data.",
+
+  "trade_id": "sample-001",
+  "timestamp_entry": "2026-03-01T10:00:00",
+  "timestamp_exit": "2026-03-01T14:32:00",
+  "pair": "BTC/USDT",
+  "variant_id": "variant_b",
+  "trade_direction": "long",
+  "trading_mode": "paper",
+
+  "entry_price": 85000.00,
+  "exit_price": 86200.00,
+  "stop_price": 83500.00,
+  "target_price": 87500.00,
+  "position_size": 0.05,
+  "fees_total": 8.55,
+  "pnl_gross": 60.00,
+  "pnl_net": 51.45,
+  "duration_minutes": 272,
+
+  "candle_timeframe": "1h",
+  "recent_return_1h": 0.008,
+  "recent_return_4h": 0.021,
+  "atr_normalized": 0.014,
+  "rsi_14": 54.2,
+  "ema_short": 84750.00,
+  "ema_long": 83900.00,
+  "ema_relationship": "above",
+  "volume_ratio": 1.35,
+  "spread": 0.0001,
+
+  "rule_triggered": "ema_crossover_rsi_filter",
+  "parameter_set_id": "variant_b_v1",
+  "champion_status": "challenger",
+  "selection_round": 1,
+
+  "tp_hit_first": false,
+  "sl_hit_first": false,
+  "max_favorable_excursion": 0.019,
+  "max_adverse_excursion": -0.006,
+  "outperformed_median_variant": true
+}
