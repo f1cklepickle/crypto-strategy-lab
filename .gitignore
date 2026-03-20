@@ -205,3 +205,29 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# -------------------------------------------------------
+# Freqtrade runtime data (generated, never commit)
+# -------------------------------------------------------
+user_data/
+*.db
+*.sqlite
+
+# Large market data files
+data/
+*.feather
+*.parquet
+*.h5
+
+# Freqtrade logs
+logs/
+*.log
+
+# -------------------------------------------------------
+# Secrets — NEVER commit real values
+# -------------------------------------------------------
+.env
+*.key
+*.pem
+secrets.json
+config.secret.json
