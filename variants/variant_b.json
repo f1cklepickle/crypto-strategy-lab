@@ -1,0 +1,20 @@
+{
+    "_comment": "Variant B — balanced EMA, moderate RSI filter, standard ATR stop. This is the Layer 0 baseline.",
+    "variant_id": "variant_b",
+    "version": "1.0",
+    "layer": 0,
+
+    "strategy": "BaselineStrategy",
+    "timeframe": "1h",
+
+    "parameters": {
+        "ema_short": 20,
+        "ema_long": 50,
+        "rsi_low": 35,
+        "rsi_high": 65,
+        "stoploss": -0.03,
+        "minimal_roi": { "0": 0.10 }
+    },
+
+    "rationale": "The Layer 0 baseline. EMA 20/50 is one of the most widely referenced crossover setups. RSI 35-65 gives reasonable room for momentum without chasing overbought entries. Stop at -3% is a common starting point. All other variants are measured against this one as the benchmark."
+}
