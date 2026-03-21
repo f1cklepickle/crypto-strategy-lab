@@ -212,6 +212,8 @@ __marimo__/
 user_data/
 *.db
 *.sqlite
+*.sqlite-shm
+*.sqlite-wal
 
 # Large market data files
 data/
