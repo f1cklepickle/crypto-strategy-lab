@@ -1,0 +1,20 @@
+{
+    "_comment": "Variant C — mid-range EMA, wider RSI filter, mid ATR stop. More permissive entries, wider stops.",
+    "variant_id": "variant_c",
+    "version": "1.0",
+    "layer": 1,
+
+    "strategy": "BaselineStrategy",
+    "timeframe": "1h",
+
+    "parameters": {
+        "ema_short": 15,
+        "ema_long": 40,
+        "rsi_low": 30,
+        "rsi_high": 70,
+        "stoploss": -0.035,
+        "minimal_roi": { "0": 0.10 }
+    },
+
+    "rationale": "Mid-range EMAs sit between A and B in responsiveness. Wider RSI range (30-70) accepts more entries including slightly oversold/overbought conditions — better suited for trending markets where momentum extends further. Larger stop (-3.5%) gives trades more room to breathe but increases max loss per trade. Best candidate for strong trending conditions."
+}
