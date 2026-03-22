@@ -67,16 +67,16 @@
     },
 
     "api_server": {
-        "enabled": false,
+        "enabled": true,
         "listen_ip_address": "127.0.0.1",
         "listen_port": 8080,
         "verbosity": "error",
         "enable_openapi": false,
-        "jwt_secret_key": "",
-        "ws_token": "",
+        "jwt_secret_key": "REPLACE_WITH_OUTPUT_OF: python -c \"import secrets; print(secrets.token_hex(32))\"",
+        "ws_token": "REPLACE_WITH_OUTPUT_OF: python -c \"import secrets; print(secrets.token_hex(32))\"",
         "CORS_origins": [],
-        "username": "",
-        "password": ""
+        "username": "REPLACE_WITH_YOUR_USERNAME",
+        "password": "REPLACE_WITH_YOUR_PASSWORD"
     },
 
     "bot_name": "crypto-strategy-lab-layer0",
