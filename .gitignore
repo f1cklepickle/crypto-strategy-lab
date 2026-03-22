@@ -233,3 +233,10 @@ logs/
 *.pem
 secrets.json
 config.secret.json
+
+# -------------------------------------------------------
+# Live configs — contain API credentials, never commit
+# Use executor/config.example.json as the template
+# -------------------------------------------------------
+executor/config.json
+executor/config_variant_*.json
