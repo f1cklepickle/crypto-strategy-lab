@@ -79,7 +79,7 @@
         "password": "REPLACE_WITH_YOUR_PASSWORD"
     },
 
-    "bot_name": "crypto-strategy-lab-layer0",
+    "bot_name": "CP-0",
     "initial_state": "running",
     "force_entry_enable": false,
     "internals": {
