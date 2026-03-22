@@ -5,7 +5,7 @@
     "layer": 1,
 
     "strategy": "BaselineStrategy",
-    "timeframe": "1h",
+    "timeframe": "15m",
 
     "parameters": {
         "ema_short": 15,

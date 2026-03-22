@@ -29,7 +29,7 @@ class BaselineStrategy(IStrategy):
     # --- Strategy metadata ------------------------------------------------
 
     INTERFACE_VERSION = 3
-    timeframe = "1h"
+    timeframe = "15m"
     can_short = False
 
     # Minimal ROI — let stop-loss and trailing stop do the work
@@ -47,6 +47,7 @@ class BaselineStrategy(IStrategy):
     process_only_new_candles = True
 
     # Startup candle count — need at least 50 candles for EMA50
+    # On 15m timeframe this covers ~12.5 hours of history
     startup_candle_count = 60
 
     # --- Parameters (Variant B defaults) ----------------------------------
