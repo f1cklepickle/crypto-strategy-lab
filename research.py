@@ -278,28 +278,31 @@ def cmd_compare():
         )
         return
 
-    rows = []
+    # Load all reports, keep only the most recent run per strategy
+    latest: dict = {}  # strategy name → (timestamp, row dict)
     for path in report_files:
         with open(path) as f:
             data = json.load(f)
         val = data["results"].get("validation")
         if not val:
             continue
-        rows.append(
-            {
-                "label":    data["label"],
-                "strategy": data["strategy"],
-                "ts":       data["timestamp"],
-                "passed":   data.get("guardrails_passed", "?"),
-                "t_trades": data["results"].get("training", {}).get("trades", "—"),
-                "v_trades": val["trades"],
-                "v_win":    val["winrate_pct"],
-                "v_pnl":    val["pnl_pct"],
-                "v_dd":     val["dd_pct"],
-                "h_pnl":    data["results"].get("holdout", {}).get("pnl_pct", "—"),
-            }
-        )
+        row = {
+            "label":    data["label"],
+            "strategy": data["strategy"],
+            "ts":       data["timestamp"],
+            "passed":   data.get("guardrails_passed", "?"),
+            "t_trades": data["results"].get("training", {}).get("trades", "—"),
+            "v_trades": val["trades"],
+            "v_win":    val["winrate_pct"],
+            "v_pnl":    val["pnl_pct"],
+            "v_dd":     val["dd_pct"],
+            "h_pnl":    data["results"].get("holdout", {}).get("pnl_pct", "—"),
+        }
+        key = data["strategy"]
+        if key not in latest or data["timestamp"] > latest[key]["ts"]:
+            latest[key] = row
 
+    rows = list(latest.values())
     rows.sort(key=lambda r: r["v_pnl"], reverse=True)
 
     W = 78
