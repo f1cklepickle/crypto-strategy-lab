@@ -160,13 +160,10 @@ crypto-strategy-lab/
 
 ## Config Credentials (gitignored — never commit)
 
-Both config.json files are gitignored. Credentials:
-- **Username:** f1cklepickle
-- **Password:** poiuPOIU0809!
-- **CP-0 JWT:** b0ff581f34d3888472bf32fa3336b56540eab6a4b719292bd6241f946dd3a9ff
-- **CP-0 ws_token:** 80d9a15cf26d9587f226e904c95f58c4c06ad5ecae478ab31d05c219e218e522
-- **CP-1 JWT:** 2edee52ab1ec78eac2a4cdafe074b8e5c7dc8d072d56c7d15991d162a06e8960
-- **CP-1 ws_token:** a07ec6dba0b853d4fc6c0de3b555d597b844996f2cf9b4030b911918b1d03ae3
+Both config.json files are gitignored and must never be committed.
+Credentials are stored locally in `executor/config.json` and `executor/config_cp1.json` only.
+
+⚠️ Do not add real credentials to this file — CLAUDE.md is version controlled.
 
 ---
 
