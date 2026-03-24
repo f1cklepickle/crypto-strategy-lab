@@ -415,6 +415,38 @@ class {new_name}({strategy_name}):
 
 
 # ─────────────────────────────────────────────────────────────────
+# Subcommand: roster
+# ─────────────────────────────────────────────────────────────────
+
+# Strategy files to skip in roster runs (deprioritized / not competitive)
+ROSTER_SKIP = {"VariantCStrategy"}
+
+
+def cmd_roster():
+    """Run backtest on every active strategy file, then print the leaderboard."""
+
+    strategy_files = sorted(STRATEGY_PATH.glob("*.py"))
+    names = [f.stem for f in strategy_files if f.stem not in ROSTER_SKIP]
+
+    if not names:
+        print("\nNo strategy files found in strategies/.\n")
+        return
+
+    W = 62
+    print(f"\n{'─' * W}")
+    print(f"  research.py roster — running {len(names)} strategies")
+    print(f"  Lab tool only. Never run on live bots.")
+    print(f"{'─' * W}\n")
+
+    for name in names:
+        print(f"  ── {name}")
+        cmd_backtest(name)
+        print()
+
+    cmd_compare()
+
+
+# ─────────────────────────────────────────────────────────────────
 # Entry point
 # ─────────────────────────────────────────────────────────────────
 
@@ -437,6 +469,8 @@ def main():
     p_br = sub.add_parser("branch", help="Scaffold the next version of a strategy")
     p_br.add_argument("strategy", help="Parent strategy class name (e.g. VariantAStrategy)")
 
+    sub.add_parser("roster", help="Backtest all active strategies, then compare")
+
     args = parser.parse_args()
 
     if args.command == "backtest":
@@ -445,6 +479,8 @@ def main():
         cmd_compare()
     elif args.command == "branch":
         cmd_branch(args.strategy)
+    elif args.command == "roster":
+        cmd_roster()
 
 
 if __name__ == "__main__":
