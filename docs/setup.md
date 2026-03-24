@@ -45,19 +45,40 @@ python schemas/validate_schema.py
 freqtrade trade --config executor/config.json --strategy BaselineStrategy
 ```
 
-Freqtrade will connect to Binance public market data.
-No API key is required for paper trading.
+Freqtrade will connect to Kraken. No API key is required for paper trading (dry_run mode).
 
 ## Download historical data for backtesting
 
+Kraken requires `--dl-trades` to build historical OHLCV data — there is no shortcut.
+This downloads raw trades and converts them to candles. It is slow (~1 hour per 6 months)
+but only needs to be done once. Run it overnight.
+
 ```powershell
-freqtrade download-data --config executor/config.json --days 90 --timeframe 1h
+# Full dataset back to Jan 2023 (run once overnight — ~4-5 hours)
+freqtrade download-data --config executor/config.json --timerange 20230101- --timeframe 15m --dl-trades
+
+# Refresh to latest candle (run anytime — appends only new data, much faster)
+freqtrade download-data --config executor/config.json --timerange 20230101- --timeframe 15m --dl-trades
 ```
+
+Freqtrade detects existing data and only downloads the missing gap — re-running will
+not re-download candles you already have. Data is stored in `user_data/data/kraken/`.
 
 ## Run a backtest
 
+Use `research.py` for all backtesting — it runs all three windows and applies
+overfitting guardrails automatically:
+
 ```powershell
-freqtrade backtesting --config executor/config.json --strategy BaselineStrategy --timerange 20250101-20260101
+python research.py backtest VariantAStrategy   # single strategy, all 3 windows
+python research.py roster                      # all active strategies, then leaderboard
+python research.py compare                     # leaderboard only (no new backtests)
+```
+
+Direct freqtrade command (single window, no guardrails):
+
+```powershell
+freqtrade backtesting --config executor/config.json --strategy BaselineStrategy --timerange 20250901-20251130
 ```
 
 ## Security reminders
